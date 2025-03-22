@@ -28,8 +28,15 @@ usermod -g 3003 -G 3003,3004 -a _apt
 usermod -G 3003 -a root
 groupadd storage
 groupadd wheel
-apt update 
+apt update && apt upgrade -y
 apt install -y openssh-server 
+# if there is a random systemd issue run this:
+# mv /var/lib/dpkg/info /var/lib/dpkg/info_silent
+# mkdir /var/lib/dpkg/info
+# apt-get update && apt -f install
+# mv /var/lib/dpkg/info/* /var/lib/dpkg/info_silent
+# rm -rf /var/lib/dpkg/info && mv /var/lib/dpkg/info_silent /var/lib/dpkg/info
+# now reinstall ssh
 echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
 echo "UsePAM no" >> /etc/ssh/sshd_config
