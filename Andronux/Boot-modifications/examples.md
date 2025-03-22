@@ -56,7 +56,7 @@ tags_offset=tagsaddr−base
 0x80000100−0x80000000=0x00000100
 
 so packing up will look like this:
-NOTE THIS WILL DISABLE SELINUX IF YOU WISH NOT TO TAKE OUT `androidboot.selinux=permissive` FROM cmdline BUT BE WARNED ONE APT UPDATE WITLL BRICK YOUR SYSTEM.. AND WILL BREAK EVERYTHING..
+NOTE THIS WILL DISABLE SELINUX IF YOU WISH NOT TO TAKE OUT `androidboot.selinux=permissive` FROM cmdline BUT BE WARNED ONE APT UPDATE WITLL BRICK YOUR SYSTEM IF SELINUX IS ON.. AND WILL BREAK EVERYTHING..
 [Explanation](https://github.com/notfound8852/Andronux-GNU/blob/main/Andronux/Some-explanations/Disabling-selinux)
 ```bash
 mkbootimg \
