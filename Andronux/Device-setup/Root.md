@@ -8,9 +8,9 @@ curl busybox-url --output busybox
 ```
 Here is a **[link](https://busybox.net/downloads/binaries/1.31.0-defconfig-multiarch-musl/)** to busybox's binaries get the one that works for your device. (**Refer to examples.md if u are confused about which busybox to get [here](https://github.com/notfound8852/Andronux-GNU/blob/main/Andronux/Boot-modifications/examples.md).)**
 
-2. Get the rootfs.
+2. Get the rootfs. Make sure to get the right one for your device..
 ```sh
-./busybox curl https://cdimage.ubuntu.com/ubuntu-base/releases/24.10/release/ubuntu-base-24.10-base-amd64.tar.gz --output rootfs.tar.gz
+./busybox curl https://cdimage.ubuntu.com/ubuntu-base/releases/24.10/release/ubuntu-base-24.10-base-arm64.tar.gz --output rootfs.tar.gz
 ```
 More rootfs are available at **[this link](https://cdimage.ubuntu.com/ubuntu-base/releases/24.10/release/)
 
