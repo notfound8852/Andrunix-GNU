@@ -25,3 +25,4 @@ LIST OF ALL THE WARNINGS:
 
 3. boot.img modifications.. **[here](https://github.com/notfound8852/Andronux-GNU/blob/main/Andronux/README.md)**
 
+4. To connect to root get a ssh client and run `ssh roo@127.0.0.1 -p 22`. You can do this in termux or get a seperate app that lets you do this.
