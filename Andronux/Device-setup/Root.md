@@ -12,7 +12,7 @@ Here is a **[link](https://busybox.net/downloads/binaries/1.31.0-defconfig-multi
 ```sh
 ./busybox curl https://cdimage.ubuntu.com/ubuntu-base/releases/24.10/release/ubuntu-base-24.10-base-arm64.tar.gz --output rootfs.tar.gz
 ```
-More rootfs are available at **[this link](https://cdimage.ubuntu.com/ubuntu-base/releases/24.10/release/)
+More rootfs are available at **[this link](https://cdimage.ubuntu.com/ubuntu-base/releases/24.10/release/)**
 
 3. Extract them..
 ```sh
@@ -39,7 +39,7 @@ chmod +x setup_linux
 ./setup_linux
 export PATH=/usr/sbin:/usr/bin:$PATH
 ```
-If this breaks due to some issue with systemd use a chroot instead to take of that. quick chroot [script](https://github.com/notfound8852/Andronux-GNU/blob/main/Andronux/scripts/Chroot.sh)
+If this breaks due to some issue with systemd reboot the device and use a chroot instead to take of that. quick chroot [script](https://github.com/notfound8852/Andronux-GNU/blob/main/Andronux/scripts/Chroot.sh). Once chrooted into the environment run `apt -f install`
 
 6. Run all of the following:
 ```sh
@@ -52,6 +52,13 @@ usermod -G 3003 -a root
 groupadd storage
 groupadd wheel
 apt update && apt upgrade
+# if the systemd issue presists run this:
+# mv /var/lib/dpkg/info /var/lib/dpkg/info_silent
+# mkdir /var/lib/dpkg/info
+# apt-get update && apt -f install
+# mv /var/lib/dpkg/info/* /var/lib/dpkg/info_silent
+# rm -rf /var/lib/dpkg/info && mv /var/lib/dpkg/info_silent /var/lib/dpkg/info
+# now reinstall ssh
 apt install -y openssh-server openssh-client
 echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
