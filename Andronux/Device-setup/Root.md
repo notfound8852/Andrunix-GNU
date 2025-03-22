@@ -39,6 +39,7 @@ chmod +x setup_linux
 ./setup_linux
 export PATH=/usr/sbin:/usr/bin:$PATH
 ```
+If this breaks due to some issue with systemd use a chroot instead to take of that. quick chroot [script](https://github.com/notfound8852/Andronux-GNU/blob/main/Andronux/scripts/Chroot.sh)
 
 6. Run all of the following:
 ```sh
