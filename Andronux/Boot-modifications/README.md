@@ -109,7 +109,7 @@ cd ..
 ```bash
 cat bootimg.cfg
 ```
-and accordingly pack up your image using mkbootimg.. check examples.md for a tutorial on what to do. [here](https://github.com/notfound8852/Andronux-GNU/blob/main/Andronux/Boot-modifications/examples.md)
+and accordingly pack up your image using mkbootimg.. check examples.md for a quick tutorial on what to do. [here](https://github.com/notfound8852/Andronux-GNU/blob/main/Andronux/Boot-modifications/examples.md). If u wanna disable selinux at boot include this tag in cmbline `androidboot.selinux=permissive`
 
 17. Flash the image and you are done.
 
