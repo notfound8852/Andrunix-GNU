@@ -47,7 +47,7 @@ export PATH /usr/sbin:/usr/bin:/sbin:/system/sbin:/system/bin:/system/xbin:/vend
 
 11. After post-fs-data and at the very end of that section before the services and  `restorecon --recursive --skip-ce /data` or something similar add this, then save and exit (make sure the spacing is correct):
 ```bash
-	mount rootfs rootfs / rw remount
+    mount rootfs rootfs / rw remount
     exec u:r:init:s0 -- /xbin/busybox mount -o remount,dev,suid /data
     mount none /data/rootfs/home /home bind
     mount none /data/rootfs/boot /boot bind
