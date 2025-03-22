@@ -10,7 +10,7 @@ Here is a **[link](https://busybox.net/downloads/binaries/1.31.0-defconfig-multi
 
 2. Get the rootfs.
 ```sh
-curl https://cdimage.ubuntu.com/ubuntu-base/releases/24.10/release/ubuntu-base-24.10-base-amd64.tar.gz --output rootfs.tar.gz
+./busybox curl https://cdimage.ubuntu.com/ubuntu-base/releases/24.10/release/ubuntu-base-24.10-base-amd64.tar.gz --output rootfs.tar.gz
 ```
 More rootfs are available at **[this link](https://cdimage.ubuntu.com/ubuntu-base/releases/24.10/release/)
 
