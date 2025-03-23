@@ -41,6 +41,7 @@ echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
 echo "UsePAM no" >> /etc/ssh/sshd_config
 ssh-keygen -A
+passwd # you must do this
 ```
 
 The setup is finished here..
