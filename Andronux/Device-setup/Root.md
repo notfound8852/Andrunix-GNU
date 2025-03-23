@@ -22,15 +22,17 @@ chmod +x ./busybox
 
 4. Merge the rootfs with android.
 ```sh
+# run these seperately the /system/bin/sh is weird sometimes
 cp -r /sbin/* /data/rootfs/sbin/ && \
 cp -r /lib/* /data/rootfs/lib/ && \
 cp -r /root/* /data/rootfs/root/ && \
-cat /system/etc/hosts /data/rootfs/etc/hosts > ./new_hosts && \
-cat /system/etc/group /data/rootfs/etc/group > ./new_group && \
-cat /system/etc/passwd /data/rootfs/etc/passwd > ./new_passwd && \
-mv ./new_passwd /data/rootfs/etc/passwd && \
-mv ./new_group /data/rootfs/etc/group && \
-mv ./new_hosts /data/rootfs/etc/hosts
+cat /system/etc/hosts /data/rootfs/etc/hosts > /data/rootfs/new_hosts && \
+cat /system/etc/group /data/rootfs/etc/group > /data/rootfs/new_group && \
+cat /system/etc/passwd /data/rootfs/etc/passwd > /data/rootfs/new_passwd && \
+cp -r /system/etc/* /data/rootfs/etc/ && \
+mv /data/rootfs/new_passwd /data/rootfs/etc/passwd && \
+mv /data/rootfs/new_group /data/rootfs/etc/group && \
+mv /data/rootfs/new_hosts /data/rootfs/etc/hosts
 ```
 
 5. Now you need to install sshd in the rootfs for that run [this](https://github.com/notfound8852/Andronux-GNU/blob/main/Andronux/scripts/setup_linux.sh) script as root and export path.
@@ -64,6 +66,7 @@ echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
 echo "UsePAM no" >> /etc/ssh/sshd_config
 ssh-keygen -A # incase the ssh host keys are messed up..
+passwd # YOU MUST DO THIS..
 ```
 
 Now you are done with this setup.
