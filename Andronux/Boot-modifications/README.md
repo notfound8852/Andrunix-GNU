@@ -60,7 +60,6 @@ export PATH /usr/sbin:/usr/bin:/sbin:/system/sbin:/system/bin:/system/xbin:/vend
     mount none /data/rootfs/usr /usr bind
     mount none /data/rootfs/etc /system/etc bind
     mount none /data/rootfs/root /root bind
-    exec u:r:init:s0 -- /xbin/busybox mount -o remount,dev,suid /data
     exec u:r:init:s0 -- /xbin/setup_sshd.sh
 ```
 if you are unsure where to place the above, refer to [this](https://github.com/notfound8852/Andronux-GNU/blob/main/Andronux/Boot-modifications/examples.md)
