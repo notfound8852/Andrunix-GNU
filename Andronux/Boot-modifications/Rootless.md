@@ -28,7 +28,14 @@ and accordingly pack up your image using mkbootimg.. check examples.md for a qui
 
 7. After flashing boot the device normally.. wait for a bit and then power off the device or go back to bootloader
 
-8. Go back to the main guide for boot-modifications after this.
+8. During the main boot-modifications guide make sure to remove this line from the init.rc that you just added in this guide:
+```bash
+exec u:r:init:s0 -- /xbin/initial_setup.sh
+```
+**PLEASE DO SO OTHERWISE IT WILL START TO SLOW DOWN YOUR BOOT PROCESS.**
+
+9. Go back to the main guide for boot-modifications after this. [here]().
+
 
 ---
 ---
