@@ -41,7 +41,7 @@ chmod +x setup_linux
 ./setup_linux
 export PATH=/usr/sbin:/usr/bin:$PATH
 ```
-If this breaks due to some issue with systemd reboot the device and use a chroot instead to take of that. quick chroot [script](https://github.com/notfound8852/Andronux-GNU/blob/main/Andronux/scripts/Chroot.sh). Once chrooted into the environment run `apt -f install`
+If this breaks due to some issue with systemd reboot the device and use a chroot instead to take care of that. quick chroot [script](https://github.com/notfound8852/Andronux-GNU/blob/main/Andronux/scripts/Chroot.sh). Once chrooted into the environment run `apt -f install`
 
 6. Run all of the following:
 ```sh
