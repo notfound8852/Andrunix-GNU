@@ -92,7 +92,7 @@ cd ..
 14. Run the following to make /usr behave and run like a proper partition(even though it is not. This will make it work as intended just like in Linux).
 ```bash
 # from ramdisk
-mv ./sbin ./usr/ && mv ./lib ./usr/lib # assuming lib exists. if not create it in ./usr/lib
+mv ./sbin ./usr/ && mv ./lib ./usr/lib && mkdir ./usr/bin # assuming lib exists. if not create it in ./usr/lib
 ln -s usr/lib ./lib && \
 ln -s usr/bin ./bin && \
 ln -s usr/sbin ./sbin
