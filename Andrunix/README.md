@@ -1,4 +1,4 @@
-This as of right now only works for Android 9 and below. [More about that..](https://github.com/notfound8852/Andrunix-GNU/blob/main/Andrunix/Some-explanations/Newer%20vs%20Older%20Android.md)
+Guide for [Android 10+](https://github.com/notfound8852/Andrunix-GNU/blob/main/Andrunix/Some-explanations/Newer%20vs%20Older%20Android.md)
 
 Before starting **YOU MUST READ THE PREREQUISISTES.md FILE..**
 
