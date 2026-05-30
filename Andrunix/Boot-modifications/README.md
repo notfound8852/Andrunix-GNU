@@ -68,7 +68,7 @@ if you are unsure where to place the above, refer to [this](https://github.com/n
 ```bash
 mkdir boot home media opt run srv tmp usr var boot root sbin
 chmod 1777 ./tmp
-# if you are on amd64 or some system that usually has a lib64 folder, run the following:
+# if you are on amd64(from like a VM or something) or some system that usually has a lib64 folder, run the following:
 # mkdir usr/lib64
 # ln -s usr/lib64 ./lib64
 ```
