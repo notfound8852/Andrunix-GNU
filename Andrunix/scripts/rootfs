@@ -1,0 +1,24 @@
+#!/xbin/busybox sh
+
+SRC="/data/rootfs"
+SKIP_DIRS="bin lib sbin etc tmp mnt proc sys dev data"
+
+log "Mounting rootfs from $SRC"
+
+for path in "$SRC"/*; do
+	[ -d "$path" ] || continue
+	name=$(basename "$path")
+
+	case " $SKIP_DIRS " in
+		*" $name "*)
+			continue
+			;;
+	esac
+
+	target="/$name"
+
+	if [ ! -d "$target" ]; then
+		mkdir "$target"
+	fi
+	mount --bind "$path" "$target"
+done
