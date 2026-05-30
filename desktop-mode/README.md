@@ -2,10 +2,10 @@
 ## Legacy guide:
 
 This is for the folks who have `/dev/graphics/fb0`
-Also make sure your root the whole time through this process. You can configure XFCE4 for your user later. Just get familar with the steps first.
+Also make sure your root the whole time through this process. You can configure XFCE4 for your user later. Just get familiar with the steps first.
 
 1. Pop a root shell on your device.
-2. Install all the legacy XFCE4 destkop stuff(you can also use legacy plasma).
+2. Install all the legacy XFCE4 desktop stuff(you can also use legacy plasma).
 
 ```sh
 sudo apt install xfce4 xfce4-goodies xinit
@@ -26,7 +26,7 @@ Since you're gonna be switching off of SF(surfaceflinger-the thing that manages 
 You need something to manage that for you, in our case it'll be systemd-logind.
 
 **IMPORTANT: **
-* You either have to blind SF or kill it entirely for this otherwise you're device will crash!
+* You either have to blind SF or kill it entirely for this otherwise your device will crash!
 * I am gonna mention this right here, right now. Make sure you have some way to access the device cause the next steps are details on how to disable the display stack.
 * adb root, or `ssh`ing into the device is fine.
 
@@ -65,7 +65,8 @@ find /vendor | grep "composer"
 /vendor/lib64/android.hardware.graphics.composer@2.4.so
 /vendor/lib64/vendor.qti.hardware.display.composer@3.0.so
 ```
-All that and it was called: `vendor.hwcomposer-2-3` 🥀
+All that just to find out it was called: `vendor.hwcomposer-2-3` 🥀
+
 So you'd run:
 ```
 setprop ctl.stop surfaceflinger && setprop ctl.stop vendor.hwcomposer-2-3
@@ -122,27 +123,27 @@ to your `bashrc` or `zshrc`
 These to init.rc:
 ```
 on property:sys.boot_completed=1
-	...
-	exec u:r:init:s0 -- /xbin/busybox mknod /dev/fb0 c 29 0
-	start dbus-daemon
-	start systemd-logind
+    ...
+    exec u:r:init:s0 -- /xbin/busybox mknod /dev/fb0 c 29 0
+    start dbus-daemon
+    start systemd-logind
 
 # at the end of the file
 service dbus-daemon /usr/bin/dbus-daemon --system --nofork --nopidfile
-	class late_start
-	user root
-	group root
-	seclabel u:r:init:s0
-	disabled
-	oneshot
+    class late_start
+    user root
+    group root
+    seclabel u:r:init:s0
+    disabled
+    oneshot
 
 service systemd-logind /usr/lib/systemd-logind
-	class late_start
-	user root
-	group root
-	seclabel u:r:init:s0
-	disabled
-	oneshot
+    class late_start
+    user root
+    group root
+    seclabel u:r:init:s0
+    disabled
+    oneshot
 ```
 
 ## How to switch back to Android:
@@ -159,7 +160,7 @@ And with that you officially have the greatest runtime switch between android an
 ## Quick points:
 
 * `mount -t tmpfs tmpfs /dev/graphics` on devices with `/dev/graphics/fb0` works quite well in preserving SF's state.
-	- So think like you're apps, you're whatever that you want to keep open and alive, stay alive(atleast for a good bit) whereas `setprop ctl.stop surfaceflinger` just fully kills it-which is also fine if that's what you want.
+	- So your apps, and whatever else you want to keep open, stays alive(atleast for a good bit) whereas `setprop ctl.stop surfaceflinger` just fully kills it-which is also fine if that's what you want.
 * `udevd --trigger` is needed only initially to generate udev entries so `systemd-logind` can manage your hardware.
 * `dbus-daemon` must be running for `systemd-logind` to work.
 

@@ -88,23 +88,23 @@ This is what it'll look like(for my visual learns):
 
 ```init.rc
 on post-fs:
-	...
+    ...
 
-	mount rootfs rootfs / remount rw dev
-	exec u:r:init:s0 -- /xbin/busybox umount /etc
+    mount rootfs rootfs / remount rw dev
+    exec u:r:init:s0 -- /xbin/busybox umount /etc
 
-	mount none /data/rootfs/etc /etc bind
+    mount none /data/rootfs/etc /etc bind
 
-	exec u:r:init:s0 -- /xbin/busybox mount -o remount,rw /
+    exec u:r:init:s0 -- /xbin/busybox mount -o remount,rw /
 
-	exec u:r:init:s0 -- /xbin/busybox mount -o remount,dev,suid /data
+    exec u:r:init:s0 -- /xbin/busybox mount -o remount,dev,suid /data
 
-	exec u:r:init:s0 -- /xbin/rootfs
+    exec u:r:init:s0 -- /xbin/rootfs
 
-	# just a little later so everything has mounted properly:
+    # just a little later so everything has mounted properly:
 
     start sshd
-	...
+    ...
 
 # # Define sshd as a native init service later in the file:
 service sshd /usr/sbin/sshd -D
@@ -120,7 +120,7 @@ service sshd /usr/sbin/sshd -D
 This is because newer android has stricter cgroup management.
 
 - Now inside your device make sure your rootfs is inside `/data/rootfs` and sshd is configured properly for password auth (you can change this later but for the first time logging in it's the easiest way to get in)
-- Make sure to merge `/system/etc` with you're `/data/rootfs/etc`:
+- Make sure to merge `/system/etc` with your `/data/rootfs/etc`:
 
 ```sh
 cat /system/etc/hosts /data/rootfs/etc/hosts > /data/rootfs/new_hosts && \
