@@ -5,7 +5,8 @@ This is for the folks who have `/dev/graphics/fb0`
 Also make sure your root the whole time through this process. You can configure XFCE4 for your user later. Just get familar with the steps first.
 
 1. Pop a root shell on your device.
-2. Install all the legacy XFCE4 destkop stuff.
+2. Install all the legacy XFCE4 destkop stuff(you can also use legacy plasma).
+
 ```sh
 sudo apt install xfce4 xfce4-goodies xinit
 # for arch based systems.
@@ -149,8 +150,23 @@ service systemd-logind /usr/lib/systemd-logind
 2. `umount /dev/graphics`
 3. Press the power button twice to reload the screen.
 
-Another thing, I'd like to mention is that you *could* theortically `rm /dev/fb0` and `umount /dev/graphics` to have XFCE4 loaded in the bg while you do whatever you want on android but I never actually tested this myself so I can't say for sure this works.
+- Another thing, I'd like to mention is that you *could* theoretically `rm /dev/fb0` and `umount /dev/graphics` to have XFCE4 loaded in the bg while you do whatever you want on android but I never actually tested this myself so I can't say for sure this works.
+
+---
+
+And with that you officially have the greatest runtime switch between android and XFCE4 on a legacy device.
+
+## Quick points:
+
+* `mount -t tmpfs tmpfs /dev/graphics` on devices with `/dev/graphics/fb0` works quite well in preserving SF's state.
+	- So think like you're apps, you're whatever that you want to keep open and alive, stay alive(atleast for a good bit) whereas `setprop ctl.stop surfaceflinger` just fully kills it-which is also fine if that's what you want.
+* `udevd --trigger` is needed only initially to generate udev entries so `systemd-logind` can manage your hardware.
+* `dbus-daemon` must be running for `systemd-logind` to work.
+
+---
+---
 
 ## DRM/KMS:
 
 I am working on it.. 🙃✌️
+(Atleast for downstream snapdragon devices.)
