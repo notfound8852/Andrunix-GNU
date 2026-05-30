@@ -120,6 +120,19 @@ service sshd /usr/sbin/sshd -D
 This is because newer android has stricter cgroup management.
 
 - Now inside your device make sure your rootfs is inside `/data/rootfs` and sshd is configured properly for password auth (you can change this later but for the first time logging in it's the easiest way to get in)
+- Make sure to merge `/system/etc` with you're `/data/rootfs/etc`:
+
+```sh
+cat /system/etc/hosts /data/rootfs/etc/hosts > /data/rootfs/new_hosts && \
+cat /system/etc/group /data/rootfs/etc/group > /data/rootfs/new_group && \
+cat /system/etc/passwd /data/rootfs/etc/passwd > /data/rootfs/new_passwd && \
+cp -r /system/etc/* /data/rootfs/etc/ && \
+mv /data/rootfs/new_passwd /data/rootfs/etc/passwd && \
+mv /data/rootfs/new_group /data/rootfs/etc/group && \
+mv /data/rootfs/new_hosts /data/rootfs/etc/hosts
+```
+
+That should be fine, ofc there are easier ways to do this. Also you don't have to merge these files(Newer Android literally doesn't care.) but you might as well.
 
 ---
 
