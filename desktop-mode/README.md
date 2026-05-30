@@ -101,7 +101,8 @@ sudo mkdir -p $XDG_RUNTIME_DIR
 sudo chmod 777 $XDG_RUNTIME_DIR
 
 mount -t tmpfs tmpfs /dev/graphics
-/usr/bin/dbus-daemon --system --nofork --nopidfile
+sudo mknod /dev/fb0 c 29 0
+/usr/bin/dbus-daemon --system --nofork --nopidfile &
 /usr/lib/systemd/systemd-logind &
 exec dbus-launch --exit-with-session startxfce4 &
 ```
@@ -117,7 +118,39 @@ sudo chmod 777 $XDG_RUNTIME_DIR
 ```
 to your `bashrc` or `zshrc`
 
-## DRM/KMS :
+These to init.rc:
+```
+on property:sys.boot_completed=1
+	...
+	exec u:r:init:s0 -- /xbin/busybox mknod /dev/fb0 c 29 0
+	start dbus-daemon
+	start systemd-logind
 
+# at the end of the file
+service dbus-daemon /usr/bin/dbus-daemon --system --nofork --nopidfile
+	class late_start
+	user root
+	group root
+	seclabel u:r:init:s0
+	disabled
+	oneshot
+
+service systemd-logind /usr/lib/systemd-logind
+	class late_start
+	user root
+	group root
+	seclabel u:r:init:s0
+	disabled
+	oneshot
+```
+
+## How to switch back to Android:
+1. Stop XFCE4.
+2. `umount /dev/graphics`
+3. Press the power button twice to reload the screen.
+
+Another thing, I'd like to mention is that you *could* theortically `rm /dev/fb0` and `umount /dev/graphics` to have XFCE4 loaded in the bg while you do whatever you want on android but I never actually tested this myself so I can't say for sure this works.
+
+## DRM/KMS:
 
 I am working on it.. 🙃✌️
