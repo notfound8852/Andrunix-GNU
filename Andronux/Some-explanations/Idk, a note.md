@@ -1,5 +1,0 @@
-So basically. once you kinda get how the init process works on android, hijacking or even fully exploiting the boot process is a complete joke. Combine this with the fact that the sources which tell you native glibc isn't a thing or stuff like that just doesn't work on android. I find that to be pretty ridiculous since the entire concept of chroot relays on finding the linux linker in /lib and /usr/lib. You see /lib and /usr/lib are not just Linux paths but rather unix paths. They themselves are built into the kernel which is y placing the linux linker inside of /lib and placing all the correct libraries in the correct folders even works in the first place..
-
-Getting access before init is also a joke.. Literally pretty much anyone with a few braincells to spare can do it.. Though this wasn't particularly good for me in my case so I simply didnt do it.
-
-As for systemd on android.. It is pretty complex and as of right now. I haven't done much towards it.. I still haven't tested systemd as pid 1. Though i hope to try all of that pretty soon..
